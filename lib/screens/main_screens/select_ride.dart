@@ -107,13 +107,14 @@ class _SelectRideState extends State<SelectRide> {
                               isSuccess: true,
                             );
                             /*redirect user to login */
-                            Navigator.push(
-                              context,
-                              PageTransitionRoute(
-                                child: const LoginScreen(),
-                                duration: pageTransitionDuration,
-                                direction: PageAnimateDirection.left,
-                              ),
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                PageTransitionRoute(
+                                  child: const LoginScreen(),
+                                  duration: pageTransitionDuration,
+                                  direction: PageAnimateDirection.left,
+                                ),
+                                ((route) => false),
                             );
                           },
                           child: const Text("Logout"),
