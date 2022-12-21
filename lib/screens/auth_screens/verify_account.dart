@@ -34,6 +34,7 @@ class _VerifyAccountState extends State<VerifyAccount> {
 
   @override
   void dispose() {
+    isLoggedIn(context);
     smsCodeController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -92,6 +93,37 @@ class _VerifyAccountState extends State<VerifyAccount> {
                 provider,
               ),
               heightBoxSize(height: 50.0),
+              Container(
+                padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(),
+                      child: const Text(
+                        "Use the OTP code below to actiavate your account, this is for development purpose only as the email service is not fully configured,",
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(),
+                      child: Text(
+                        widget.smsCode.toString(),
+                        style: const TextStyle(
+                          color: Colors.black45,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              heightBoxSize(height: 100.0),
             ],
           ),
         ),

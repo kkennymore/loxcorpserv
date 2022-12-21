@@ -1,10 +1,16 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loxcorpserv/components/animation.dart';
+import 'package:loxcorpserv/components/custom_button.dart';
 import 'package:loxcorpserv/components/custom_text_form_field.dart';
 import 'package:loxcorpserv/components/functions.dart';
+import 'package:loxcorpserv/config/config.dart';
 import 'package:loxcorpserv/public/colors.dart';
-
+import 'package:loxcorpserv/screens/auth_screens/login_screen.dart';
+import 'package:loxcorpserv/screens/main_screens/select_ride.dart';
+import 'package:loxcorpserv/services/local_storage.dart';
+import 'package:loxcorpserv/services/users_auth_services.dart';
 
 class Location extends StatefulWidget {
   const Location({super.key});
@@ -16,10 +22,18 @@ class Location extends StatefulWidget {
 class _LocationState extends State<Location> {
   final currentLocationController = TextEditingController();
   final bagsController = TextEditingController();
+  late String username = "username";
 
   @override
   void initState() {
+    userData();
+    isLoggedIn(context);
+
     super.initState();
+  }
+
+  void userData() async {
+    print("##########: ${await LocalStorage().get('email').toString()}");
   }
 
   @override
@@ -50,13 +64,31 @@ class _LocationState extends State<Location> {
                 currentLocationController,
                 bagsController,
               ),
-              heightBoxSize(height: 30.0),
+              heightBoxSize(height: 60.0),
+              welcomeBack(context, username),
+              heightBoxSize(height: 250.0),
+              
+              heightBoxSize(height: 125.0),
+              const CustomButton(
+                text: "Done",
+                isTextColor: true,
+                customTextColor: Colors.white,
+                pageRoute: SelectRide(),
+              ),
+              heightBoxSize(height: 50.0),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Container welcomeBack(context, username) {
+  return Container(
+    padding: const EdgeInsets.only(left: 25.0,right: 25.0),
+    child: Text("google map is to be displayed here, i didn't implement it because i don't have the google APP API key"),
+  );
 }
 
 Row locationInputs(context, currentLocationController, bagsController) {

@@ -12,7 +12,6 @@ class HttpRequests {
 //========process a get request to the end point===============//
   Future<http.Response> httpGet(String endPoint,
       {String? query, headers}) async {
-    print("###########: ${baseUrl + endPoint + query.toString()}");
     Uri uri = Uri.parse(baseUrl + endPoint);
     if (query != null) {
       uri = Uri.parse(baseUrl + endPoint + query.toString());

@@ -4,19 +4,29 @@ import 'package:flutter/services.dart';
 import 'package:loxcorpserv/components/splash.dart';
 import 'package:loxcorpserv/home.dart';
 import 'package:loxcorpserv/providers.dart';
+import 'package:loxcorpserv/screens/main_screens/location.dart';
+import 'package:loxcorpserv/services/local_storage.dart';
 import 'package:loxcorpserv/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(const Duration(milliseconds: 300));
-  runApp(const Runner());
+  
+  /*check if the user has logged in and redirect to appropriate screen */
+  if (await LocalStorage().get("email") == "" ||
+      await LocalStorage().get("email") == null) {
+    runApp(const Runner(isIn: 0));
+  } else {
+    runApp(const Runner(isIn: 1));
+  }
 }
 
 // whenever your initialization is completed, remove the splash screen:
 // FlutterNativeSplash.remove();
 class Runner extends StatelessWidget {
-  const Runner({Key? key}) : super(key: key);
+  final int? isIn;
+  const Runner({Key? key, this.isIn}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +46,7 @@ class Runner extends StatelessWidget {
           darkTheme: darkTheme(context),
           home: AnimatedSplashScreen(
             splash: const Splash(),
-            nextScreen: const Home(),
+            nextScreen: isIn == 0 ? const Home() : const Location(),
             splashTransition: SplashTransition.fadeTransition,
             splashIconSize: 1000.0,
           ),

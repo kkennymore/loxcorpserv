@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:loxcorpserv/components/custom_button.dart';
 import 'package:loxcorpserv/components/functions.dart';
 import 'package:loxcorpserv/screens/auth_screens/register_screen.dart';
+import 'package:loxcorpserv/screens/main_screens/location.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -46,7 +47,7 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   heightBoxSize(height: 40.0),
-                  const CustomButton(
+                   const CustomButton(
                     text: "Get Started",
                     isTextColor: true,
                     customTextColor: Colors.white,

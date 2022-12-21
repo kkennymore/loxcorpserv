@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:loxcorpserv/components/animation.dart';
 import 'package:loxcorpserv/config/config.dart';
@@ -55,7 +54,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provBtn = Provider.of<ButtonProvider>(context);
     return Container(
       width: width,
       height: height, //46.0,

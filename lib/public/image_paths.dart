@@ -1,0 +1,1 @@
+const cornProduct = "assets/images/corn.png";

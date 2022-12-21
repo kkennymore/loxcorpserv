@@ -11,6 +11,8 @@ import 'package:loxcorpserv/public/colors.dart';
 import 'package:loxcorpserv/public/radius.dart';
 import 'package:loxcorpserv/public/sizes.dart';
 import 'package:loxcorpserv/screens/auth_screens/login_screen.dart';
+import 'package:loxcorpserv/screens/main_screens/location.dart';
+import 'package:loxcorpserv/services/local_storage.dart';
 import 'package:loxcorpserv/state_management/button_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +37,17 @@ Builder horizontalDivider(
       color: lineColor,
     );
   });
+}
+
+void isLoggedIn(context, {bool? isIn = false}) async {
+  /*check if the user has logged in and redirect to appropriate screen */
+  if (isIn == true && await LocalStorage().get('email') != null) {
+    Navigator.pop(context);
+  } else {
+    if (await LocalStorage().get('email') == null) {
+      Navigator.pop(context);
+    }
+  }
 }
 
 Builder verticalDivider({
@@ -299,7 +312,7 @@ toastSnackBar({
             textMessage,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              color:  Colors.green,
+              color: Colors.green,
             ),
           ),
         );
@@ -327,11 +340,11 @@ toastSnackBar({
 }
 
 notInternet() {
-    return {
-      'status': false,
-      'message': 'No internet connection',
-    };
-  }
+  return {
+    'status': false,
+    'message': 'No internet connection',
+  };
+}
 
 void provButtonLoadingEnd(context, bool state) {
   var provBtn = Provider.of<ButtonProvider>(context, listen: false);

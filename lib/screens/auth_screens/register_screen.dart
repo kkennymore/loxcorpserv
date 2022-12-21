@@ -1,5 +1,4 @@
 import 'package:community_material_icon/community_material_icon.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loxcorpserv/components/animation.dart';
@@ -106,11 +105,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 provider,
               ),
               heightBoxSize(height: 20.0),
-              const CustomButton(
+               const CustomButton(
                 text: "Forgot your password?",
                 isTextColor: true,
                 customTextColor: primaryColor,
-                pageRoute: ForgotPasswordScreen(),
+                pageRoute:  ForgotPasswordScreen(),
                 bgColor: Colors.transparent,
               ),
             ],

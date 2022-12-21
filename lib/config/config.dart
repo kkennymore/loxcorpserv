@@ -17,4 +17,5 @@ const String register = "/user/register";
 const String verify = "/user/verify";
 const String forgotPassword = "/user/forgot_password";
 const String resetPassword = "/user/reset_password";
+const String products = "/products";
 
